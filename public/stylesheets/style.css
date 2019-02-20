@@ -6,3 +6,35 @@ body {
 a {
   color: #00B7FF;
 }
+
+.negative {
+  color: #dc0000;
+}
+
+.positive {
+  color: #0adc00;
+}
+
+.nav-toggle:hover {
+    background-color: #0563ca !important;
+}
+
+h1 {
+  font-size: 1.6rem !important;
+  color: #363636 !important;
+  font-weight: 600 !important;
+}
+
+h2 {
+  font-size: 1.4rem !important;
+}
+.button.is-primary {
+  background-color: #F038FF !important;
+}
+
+.nav .menu-custom-item {
+  padding-top: 1rem;
+  padding-left: 1rem;
+  color: white;
+  font-weight: 600;
+}

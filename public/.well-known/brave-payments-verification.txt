@@ -1,0 +1,4 @@
+This is a Brave Payments publisher verification file.
+
+Domain: ethereum-cours.com
+Token: 536a04bbc1f9277187a26ece5f2a6c69309441bcfb50984926d60f51fa9277d9

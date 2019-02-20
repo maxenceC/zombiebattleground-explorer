@@ -1,80 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr-FR">
 
 <head>
-  <title>{{title}}</title>
+  <title>Zombie Battlegrounds Explorer</title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" /></head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.css" />
+</head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1">
+<meta name='keywords' content="Ethereum, prix, cours, acheter Ethereum, ripple, cours ripple, acheter ripple">
+<meta name='description' content="{{desc}}">
+<meta name='subject' content="Suivez le cours de l'Ethereum (ETH) et du Ripple (XRP) en direct">
+</head>
 
-<body> 
-  <div>
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div class="navbar-menu">
-    <div class="navbar-start">
-     
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Cards
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          Decks
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
-    </div>
-
- 
-  </div>
-</nav>
-  </div> 
+<body>
+  {{>navbar}}
   {{{body}}}
+  {{>footer}}
 </body>
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
+      .then(function (registration) {
+        console.log('Registration successful, scope is:', registration.scope);
+      })
+      .catch(function (error) {
+        console.log('Service worker registration failed, error:', error);
+      });
+  }
+</script>
+<script>
+  jQuery(document).ready(function ($) {
+
+    var $toggle = $('#nav-toggle');
+    var $menu = $('#nav-menu');
+
+    $toggle.click(function () {
+      $(this).toggleClass('is-active');
+      $menu.toggleClass('is-active');
+    });
+
+    $('.modal-button').click(function () {
+      var target = $(this).data('target');
+      $('html').addClass('is-clipped');
+      $(target).addClass('is-active');
+    });
+
+    $('.modal-background, .modal-close').click(function () {
+      $('html').removeClass('is-clipped');
+      $(this).parent().removeClass('is-active');
+    });
+
+    $('.modal-card-head .delete, .modal-card-foot .button').click(function () {
+      $('html').removeClass('is-clipped');
+      $('#modal-ter').removeClass('is-active');
+    });
+
+    var $highlights = $('.highlight');
+
+    $highlights.each(function () {
+      var $el = $(this);
+      var copy = '<button class="copy">Copy</button>';
+      var expand = '<button class="expand">Expand</button>';
+      $el.append(copy);
+
+      if ($el.find('pre code').innerHeight() > 600) {
+        $el.append(expand);
+      }
+    });
+
+    var $highlightButtons = $('.highlight .copy, .highlight .expand');
+
+    $highlightButtons.hover(function () {
+      $(this).parent().css('box-shadow', '0 0 0 1px #ed6c63');
+    }, function () {
+      $(this).parent().css('box-shadow', 'none');
+    });
+
+    $('.highlight .expand').click(function () {
+      $(this).parent().children('pre').css('max-height', 'none');
+    });
+
+  });
+
+</script>
+
 
 </html>
